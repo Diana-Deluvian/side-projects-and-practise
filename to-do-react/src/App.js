@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton"
@@ -10,6 +10,14 @@ const FILTER_MAP = {
   Completed: task => task.completed
 };
 const FILTER_NAMES = Object.keys(FILTER_MAP);
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
@@ -72,7 +80,14 @@ function App(props) {
     });
     setTasks(editedTaskList);
   }
+  const listHeadingRef = useRef(null);
+  const prevTaskLength = usePrevious(tasks.length);
 
+  useEffect(() => {
+    if (tasks.length - prevTaskLength === -1) {
+      listHeadingRef.current.focus();
+    }
+  }, [tasks.length, prevTaskLength]);
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
@@ -80,7 +95,7 @@ function App(props) {
       <div className="filters btn-group stack-exception">
         {filterList}
       </div>
-      <h2 id="list-heading">
+      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
         {headingText}
       </h2>
       <ul
