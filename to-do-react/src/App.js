@@ -22,6 +22,11 @@ function usePrevious(value) {
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState('All');
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
   
   const filterList = FILTER_NAMES.map(name => (
     <FilterButton 
@@ -107,6 +112,7 @@ function App(props) {
       
       </ul>
     </div>
+    
   );
 }
 export default App;
