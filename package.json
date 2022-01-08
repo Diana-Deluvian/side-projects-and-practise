@@ -1,0 +1,22 @@
+{
+  "name": "soundboard",
+  "version": "1.0.0",
+  "description": "A simple soundboard containing all of my favourite sounds and quotes",
+  "main": "Soundboard.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diana-Deluvian/side-projects-and-practise.git"
+  },
+  "keywords": [
+    "soundboard"
+  ],
+  "author": "Diana Deluvian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diana-Deluvian/side-projects-and-practise/issues"
+  },
+  "homepage": "https://github.com/Diana-Deluvian/side-projects-and-practise#readme"
+}
